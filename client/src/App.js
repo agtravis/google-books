@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       searchText: ``,
       googleBooksResponse: [],
+      lastSearch: ``,
     };
   }
 
@@ -28,6 +29,7 @@ class App extends Component {
       .get(URL)
       .then((res) => {
         this.setState({ googleBooksResponse: res.data.items });
+        this.setState({ lastSearch: this.state.searchText });
         this.setState({ searchText: `` });
       })
       .catch((err) => console.error(err));
@@ -46,6 +48,8 @@ class App extends Component {
               render={() => (
                 <Home
                   searchText={this.state.searchText}
+                  lastSearch={this.state.lastSearch}
+                  googleBooksResponse={this.googleBooksResponse}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                 />
