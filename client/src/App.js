@@ -15,9 +15,22 @@ class App extends Component {
     this.state = {
       searchText: ``,
       googleBooksResponse: [],
+      favoriteBooksResponse: [],
       lastSearch: ``,
     };
   }
+
+  componentDidMount() {
+    this.getFavorites();
+  }
+
+  getFavorites = () => {
+    API.getBooks()
+      .then((res) => {
+        this.setState({ favoriteBooksResponse: res.data });
+      })
+      .catch((err) => console.error(err));
+  };
 
   handleChange = (event) => {
     this.setState({ searchText: event.target.value });
@@ -37,14 +50,12 @@ class App extends Component {
   };
 
   saveToFavorites = (bookObject) => {
-    console.log(bookObject);
     API.saveBook(bookObject)
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
   };
 
   render() {
-    // const { googleBooksResponse } = this.state;
     return (
       <Router>
         <Header />
