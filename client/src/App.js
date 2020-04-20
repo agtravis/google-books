@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import Saved from './pages/Saved';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Wrapper from './components/Wrapper';
@@ -41,7 +43,10 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <Wrapper>HEllo</Wrapper>
+        <Wrapper>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/saved" component={Saved} />
+        </Wrapper>
       </Router>
     );
   }
