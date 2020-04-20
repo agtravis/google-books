@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
+import Wrapper from './components/Wrapper';
 import axios from 'axios';
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
+        <Wrapper>HEllo</Wrapper>
       </Router>
     );
   }

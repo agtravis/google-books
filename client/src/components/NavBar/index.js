@@ -6,7 +6,15 @@ import Button from '../Button';
 function NavBar(props) {
   return (
     <nav>
-      <div className="container">
+      <div id="nav-bar">
+        <a href="/" alt="search">
+          Search
+        </a>
+        <a href="/saved" alt="saved books">
+          Saved
+        </a>
+      </div>
+      {/* <div className="container">
         <div className="row">
           <div id="nav-bar" className="col s12 m12 l12">
             <form id="nav-bar-form">
@@ -24,7 +32,7 @@ function NavBar(props) {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 }
