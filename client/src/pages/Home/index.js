@@ -23,8 +23,21 @@ function Home(props) {
       {props.googleBooksResponse !== undefined ? (
         <div>
           <ResultsContainer
-            array={props.googleBooksResponse}
-            saveToFavorites={props.saveToFavorites}
+            array={props.googleBooksResponse.map((book) => {
+              return {
+                title: book.volumeInfo.title,
+                authors: book.volumeInfo.authors,
+                description: book.volumeInfo.description,
+                image: book.volumeInfo.imageLinks
+                  ? book.volumeInfo.imageLinks.thumbnail
+                  : null,
+                link: book.volumeInfo.infoLink,
+              };
+            })}
+            interactWithFavorites={props.saveToFavorites}
+            actionName="Add To Favorites"
+            addClassName=""
+            deleteClassName="hide"
           />
         </div>
       ) : (

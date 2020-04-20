@@ -20,8 +20,9 @@ function Result(props) {
             </a>
           ) : null}
           <p
+            className={props.addClassName}
             onClick={() =>
-              props.saveToFavorites({
+              props.interactWithFavorites({
                 authors: props.authors,
                 description: props.description,
                 image: props.image,
@@ -30,7 +31,13 @@ function Result(props) {
               })
             }
           >
-            Save to Favorites
+            {props.actionName}
+          </p>
+          <p
+            className={props.deleteClassName}
+            onClick={() => props.interactWithFavorites(props.id)}
+          >
+            {props.actionName}
           </p>
         </div>
       </div>

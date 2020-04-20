@@ -9,17 +9,16 @@ function ResultsContainer(props) {
         return (
           <Result
             key={index}
-            id={index}
-            title={book.volumeInfo.title}
-            authors={book.volumeInfo.authors}
-            description={book.volumeInfo.description}
-            image={
-              book.volumeInfo.imageLinks
-                ? book.volumeInfo.imageLinks.thumbnail
-                : null
-            }
-            link={book.volumeInfo.infoLink}
-            saveToFavorites={props.saveToFavorites}
+            id={book._id ? book._id : index}
+            title={book.title}
+            authors={book.authors}
+            description={book.description}
+            image={book.image}
+            link={book.link}
+            interactWithFavorites={props.interactWithFavorites}
+            actionName={props.actionName}
+            addClassName={props.addClassName}
+            deleteClassName={props.deleteClassName}
           />
         );
       })}

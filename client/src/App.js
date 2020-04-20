@@ -51,7 +51,16 @@ class App extends Component {
 
   saveToFavorites = (bookObject) => {
     API.saveBook(bookObject)
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        this.getFavorites();
+      })
+      .catch((err) => console.error(err));
+  };
+
+  deleteFromFavorites = (id) => {
+    API.deleteBook(id)
+      .then(() => this.getFavorites())
       .catch((err) => console.error(err));
   };
 
@@ -76,7 +85,17 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/saved" component={Saved} />
+            <Route
+              exact
+              path="/saved"
+              render={() => (
+                <Saved
+                  favoriteBooksResponse={this.state.favoriteBooksResponse}
+                  deleteFromFavorites={this.deleteFromFavorites}
+                  getFavorites={this.getFavorites}
+                />
+              )}
+            />
           </Switch>
         </Wrapper>
       </Router>
