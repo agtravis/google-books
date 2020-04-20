@@ -36,6 +36,7 @@ class App extends Component {
   };
 
   render() {
+    const { googleBooksResponse } = this.state;
     return (
       <Router>
         <Header />
@@ -49,7 +50,7 @@ class App extends Component {
                 <Home
                   searchText={this.state.searchText}
                   lastSearch={this.state.lastSearch}
-                  googleBooksResponse={this.googleBooksResponse}
+                  googleBooksResponse={googleBooksResponse}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                 />

@@ -19,7 +19,7 @@ function Home(props) {
         </div>
       ) : null}
 
-      {/* <ResultsContainer array={props.googleBooksResponse} /> */}
+      <ResultsContainer array={props.googleBooksResponse} />
     </div>
   );
 }
