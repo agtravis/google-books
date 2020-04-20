@@ -19,7 +19,19 @@ function Result(props) {
               View in Google Books
             </a>
           ) : null}
-          <p>Save to Favorites</p>
+          <p
+            onClick={() =>
+              props.saveToFavorites({
+                authors: props.authors,
+                description: props.description,
+                image: props.image,
+                link: props.link,
+                title: props.title,
+              })
+            }
+          >
+            Save to Favorites
+          </p>
         </div>
       </div>
       <div className="card-contents">

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Wrapper from './components/Wrapper';
 import axios from 'axios';
+import API from './utils/API';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,13 @@ class App extends Component {
       .catch((err) => console.error(err));
   };
 
+  saveToFavorites = (bookObject) => {
+    console.log(bookObject);
+    API.saveBook(bookObject)
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  };
+
   render() {
     // const { googleBooksResponse } = this.state;
     return (
@@ -53,6 +61,7 @@ class App extends Component {
                   googleBooksResponse={this.state.googleBooksResponse}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
+                  saveToFavorites={this.saveToFavorites}
                 />
               )}
             />

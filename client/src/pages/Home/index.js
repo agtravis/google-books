@@ -22,7 +22,10 @@ function Home(props) {
 
       {props.googleBooksResponse !== undefined ? (
         <div>
-          <ResultsContainer array={props.googleBooksResponse} />
+          <ResultsContainer
+            array={props.googleBooksResponse}
+            saveToFavorites={props.saveToFavorites}
+          />
         </div>
       ) : (
         <p>Try another search?</p>

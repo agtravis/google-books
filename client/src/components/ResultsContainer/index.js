@@ -19,6 +19,7 @@ function ResultsContainer(props) {
                 : null
             }
             link={book.volumeInfo.infoLink}
+            saveToFavorites={props.saveToFavorites}
           />
         );
       })}
