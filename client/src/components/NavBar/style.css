@@ -6,12 +6,3 @@
 #nav-bar p {
   margin: 0 10px;
 }
-
-#nav-bar-form {
-  display: flex;
-  justify-content: space-between;
-}
-
-#search-field {
-  width: 100px;
-}

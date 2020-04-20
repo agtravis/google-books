@@ -1,0 +1,8 @@
+#nav-bar-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#search-field {
+  width: 100px;
+}

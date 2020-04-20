@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Saved from './pages/Saved';
@@ -23,7 +23,6 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // alert(this.state.searchText);
     const URL = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchText}&key=AIzaSyDbD1aa0j9dmJv5m_IGyKWHQ_hWgItANl4`;
     axios
       .get(URL)
@@ -38,14 +37,22 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <NavBar
-          searchText={this.state.searchText}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <NavBar />
         <Wrapper>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/saved" component={Saved} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Home
+                  searchText={this.state.searchText}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
+            />
+            <Route exact path="/saved" component={Saved} />
+          </Switch>
         </Wrapper>
       </Router>
     );

@@ -1,10 +1,17 @@
 import React from 'react';
 import './style.css';
+import Title from '../../components/Title';
+import SearchForm from '../../components/SearchForm';
 
-function Home() {
+function Home(props) {
   return (
     <div>
-      <p>Home</p>
+      <Title title="Search" />
+      <SearchForm
+        searchText={props.searchText}
+        handleChange={props.handleChange}
+        handleSubmit={props.handleSubmit}
+      />
     </div>
   );
 }
