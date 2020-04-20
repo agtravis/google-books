@@ -16,6 +16,7 @@ function Home(props) {
       {props.lastSearch.length ? (
         <div>
           <Title title={`Search results for ${props.lastSearch}:`} />
+          <hr />
         </div>
       ) : null}
 
@@ -26,7 +27,6 @@ function Home(props) {
       ) : (
         <p>Try another search?</p>
       )}
-      {/* <ResultsContainer array={props.googleBooksResponse} /> */}
     </div>
   );
 }

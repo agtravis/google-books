@@ -1,0 +1,44 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-options {
+    display: flex;
+    align-items: center;
+}
+
+.card-options a {
+    margin-right: 10px;
+}
+
+.card-options a, .card-options p {
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.card-options a:hover, .card-options p:hover {
+    background-color: rgb(78, 78, 78);
+}
+
+.card-options p {
+    cursor: pointer;
+}
+
+.card-contents {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-thumbnail {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.card-details p {
+    text-align: justify;
+    margin: 0
+}
