@@ -24,7 +24,7 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const URL = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchText}&key=AIzaSyDbD1aa0j9dmJv5m_IGyKWHQ_hWgItANl4`;
+    const URL = `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.searchText}&key=AIzaSyDbD1aa0j9dmJv5m_IGyKWHQ_hWgItANl4`;
     axios
       .get(URL)
       .then((res) => {
