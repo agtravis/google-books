@@ -17,6 +17,7 @@
     background-color: black;
     border-radius: 5px;
     padding: 5px;
+    text-align: center;
 }
 
 .card-options a:hover, .card-options p:hover {
@@ -30,6 +31,7 @@
 .card-contents {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .card-thumbnail {

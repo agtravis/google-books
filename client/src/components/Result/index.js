@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 
 function Result(props) {
+  const [addStatus, setAddStatus] = useState(false);
+
   return (
-    <div id={`book-card${props.id}`}>
+    <div id={`book-card${props.id}`} className="book-card">
       <div className="card-header">
         <div className="title-author">
           {props.title ? <h4>{props.title}</h4> : null}
@@ -21,17 +23,24 @@ function Result(props) {
           ) : null}
           <p
             className={props.addClassName}
-            onClick={() =>
+            onClick={() => {
               props.interactWithFavorites({
                 authors: props.authors,
                 description: props.description,
                 image: props.image,
                 link: props.link,
                 title: props.title,
-              })
-            }
+              });
+              setAddStatus(true);
+            }}
           >
             {props.actionName}
+            {addStatus ? (
+              <span>
+                <br />
+                Added!
+              </span>
+            ) : null}
           </p>
           <p
             className={props.deleteClassName}

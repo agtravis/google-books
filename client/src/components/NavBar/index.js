@@ -11,28 +11,9 @@ function NavBar(props) {
           <p>Search</p>
         </Link>
         <Link to="/saved">
-          <p>Saved</p>
+          <p>Saved ({props.numBooks})</p>
         </Link>
       </div>
-      {/* <div className="container">
-        <div className="row">
-          <div id="nav-bar" className="col s12 m12 l12">
-            <form id="nav-bar-form">
-              <input
-                type="text"
-                placeholder="Search..."
-                id="search-field"
-                value={props.searchText}
-                onChange={(event) => props.handleChange(event)}
-              />
-              <Button
-                handleSubmit={props.handleSubmit}
-                id="search-submit-button"
-              />
-            </form>
-          </div>
-        </div>
-      </div> */}
     </nav>
   );
 }

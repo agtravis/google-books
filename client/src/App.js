@@ -51,8 +51,7 @@ class App extends Component {
 
   saveToFavorites = (bookObject) => {
     API.saveBook(bookObject)
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         this.getFavorites();
       })
       .catch((err) => console.error(err));
@@ -68,7 +67,7 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <NavBar />
+        <NavBar numBooks={this.state.favoriteBooksResponse.length} />
         <Wrapper>
           <Switch>
             <Route
