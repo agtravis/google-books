@@ -13,7 +13,11 @@ function ResultsContainer(props) {
             title={book.volumeInfo.title}
             authors={book.volumeInfo.authors}
             description={book.volumeInfo.description}
-            image={book.volumeInfo.imageLinks.thumbnail}
+            image={
+              book.volumeInfo.imageLinks
+                ? book.volumeInfo.imageLinks.thumbnail
+                : null
+            }
             link={book.volumeInfo.infoLink}
           />
         );

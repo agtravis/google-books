@@ -19,7 +19,14 @@ function Home(props) {
         </div>
       ) : null}
 
-      <ResultsContainer array={props.googleBooksResponse} />
+      {props.googleBooksResponse !== undefined ? (
+        <div>
+          <ResultsContainer array={props.googleBooksResponse} />
+        </div>
+      ) : (
+        <p>Try another search?</p>
+      )}
+      {/* <ResultsContainer array={props.googleBooksResponse} /> */}
     </div>
   );
 }
