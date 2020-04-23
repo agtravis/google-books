@@ -2,7 +2,7 @@
 
 This app is a full MERN (MongoDB/Express/React/Node) stack application that lets a user look for books, and if the user wants to they can save any book to a database for quick access at a later date. The user can also remove these 'favorited' books from the database. It uses the Google Books API for the front end, and then my own API for interacting with the database.
 
-Check out the repo [here](https://github.com/agtravis/google-books), and see the app in operation [here](https://agtravis-google-books.herokuapp.com/).
+Check out the [repo](https://github.com/agtravis/google-books), and see the in operation [app](https://agtravis-google-books.herokuapp.com/). Also, see it linked in my [portfolio](https://agtravis.github.io/portfolio/#/projectlist)
 
 This app runs in the browser - see [Setup](#setup) below for instructions on how to use.
 
