@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 
 function Result(props) {
-  const [addStatus, setAddStatus] = useState(false);
+  const [addStatus, setAddStatus] = useState(props.saved);
 
   return (
     <div id={`book-card${props.id}`} className="book-card">
@@ -23,22 +23,26 @@ function Result(props) {
           ) : null}
           <p
             className={props.addClassName}
-            onClick={() => {
-              props.interactWithFavorites({
-                authors: props.authors,
-                description: props.description,
-                image: props.image,
-                link: props.link,
-                title: props.title,
-              });
-              setAddStatus(true);
-            }}
+            onClick={
+              addStatus === false
+                ? () => {
+                    props.interactWithFavorites({
+                      authors: props.authors,
+                      description: props.description,
+                      image: props.image,
+                      link: props.link,
+                      title: props.title,
+                    });
+                    setAddStatus(true);
+                  }
+                : null
+            }
           >
             {props.actionName}
             {addStatus ? (
               <span>
                 <br />
-                Added!
+                <strong>In Your Favorites!</strong>
               </span>
             ) : null}
           </p>

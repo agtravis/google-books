@@ -15,6 +15,7 @@ function ResultsContainer(props) {
             description={book.description}
             image={book.image}
             link={book.link}
+            saved={book.saved}
             interactWithFavorites={props.interactWithFavorites}
             actionName={props.actionName}
             addClassName={props.addClassName}

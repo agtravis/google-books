@@ -29,6 +29,13 @@ function Home(props) {
         <div>
           <ResultsContainer
             array={props.googleBooksResponse.map((book) => {
+              let saved = false;
+              for (const favoriteBook of props.favoriteBooksResponse) {
+                if (book.volumeInfo.infoLink === favoriteBook.link) {
+                  saved = true;
+                  break;
+                }
+              }
               return {
                 title: book.volumeInfo.title,
                 authors: book.volumeInfo.authors,
@@ -37,6 +44,7 @@ function Home(props) {
                   ? book.volumeInfo.imageLinks.thumbnail
                   : null,
                 link: book.volumeInfo.infoLink,
+                saved: saved,
               };
             })}
             interactWithFavorites={props.saveToFavorites}

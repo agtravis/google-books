@@ -78,6 +78,7 @@ class App extends Component {
                   searchText={this.state.searchText}
                   lastSearch={this.state.lastSearch}
                   googleBooksResponse={this.state.googleBooksResponse}
+                  favoriteBooksResponse={this.state.favoriteBooksResponse}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                   saveToFavorites={this.saveToFavorites}
