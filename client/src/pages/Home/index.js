@@ -31,7 +31,10 @@ function Home(props) {
             array={props.googleBooksResponse.map((book) => {
               let saved = false;
               for (const favoriteBook of props.favoriteBooksResponse) {
-                if (book.volumeInfo.infoLink === favoriteBook.link) {
+                if (
+                  book.volumeInfo.infoLink &&
+                  book.volumeInfo.infoLink === favoriteBook.link
+                ) {
                   saved = true;
                   break;
                 }

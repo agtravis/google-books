@@ -134,7 +134,10 @@ There is only one input field, so the `handleChange` method does not need any co
         array={props.googleBooksResponse.map((book) => {
           let saved = false;
           for (const favoriteBook of props.favoriteBooksResponse) {
-            if (book.volumeInfo.infoLink === favoriteBook.link) {
+            if (
+              book.volumeInfo.infoLink &&
+              book.volumeInfo.infoLink === favoriteBook.link
+            ) {
               saved = true;
               break;
             }
