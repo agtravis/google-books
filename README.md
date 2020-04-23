@@ -124,7 +124,7 @@ handleSubmit = (event) => {
 
 There is only one input field, so the `handleChange` method does not need any conditionals or switch statement to identify which property of the state needs to be updated. This simply means that as the user types, the state is updated. The benefit to doing this, as opposed to waiting for the user to finish typing, is that the app could act at any point on what the user has typed, perhaps by running a setTimout function if the user stops typing for half a second, or displaying the text in another location without reloading the whole page. However, that is not necessary, I am just following convention in this case.
 
-`handleSubmit` is a little more involved, and additionally so because I have the full API request written in here. I might want to move this to a more suitable location, perhaps creating a second API in the `utils` directory on the front end. However, this is a simple `GET` request, and the URL is already constructed with a template literal ready to go thanks to the state, and then with the response the array for the response in the state is populated. This state is then passed to the component that renders the results, however some processing is done in that component before it renders:
+`handleSubmit` is a little more involved, and additionally so because I have the full API request written in here. I might want to move this to a more suitable location, perhaps creating a second API in the `utils` directory on the front end. However, this is a simple `GET` request, and the URL is already constructed with a template literal (not that the URL states `intitle`, this means the search term variable can be a substring of the whole title) ready to go thanks to the state, and then with the response the array for the response in the state is populated. This state is then passed to the component that renders the results, however some processing is done in that component before it renders:
 
 ```js
 {
@@ -160,7 +160,7 @@ NOTE: The Google API does not always contain all the values needed. If the value
 
 Why not simply pass the whole response into the component and then have that component do the work of parsing or traversing through it? The reason is because I want that rendering component to be multipurpose. I want it to be able to be used to render books returned from the Google API and my own database. Alternatively, I could set my database up to reflect the structure of the Google response, but the Google response has many many properties, and properties with properties, and arrays of properties, and my database objects only have 5 properties total (not including the default values like ID and Date Created).
 
-Re-usability is one of the main awesome reasons to be utilizing a tool like React.
+Re-usability is one of the main awesome reasons to be utilizing a tool like React. In order to facilitate this, there are a few `string` props that are passed that will be utilized as `className`s, so that the child component knows whether or not to render that particular element or not - for example the button that will either add or delete a book from favorites.
 
 This rendering component then runs a map on the array passed (be it Google or my DB) to create a list of components as follows:
 
@@ -194,13 +194,100 @@ At this point, the user can choose to view more details on the book or even purc
 
 ### 3. User Adds a Book to Favorites
 
+In the component for the individual books displayed in the 'Search' home-page, the second button allows the user to add a book to their list of favorites. The function being passed in is a prop with a generic name, but further up the prop tree the function passed depends on the eventual usage of the component. This way, the so-called 'dumb' components do not need to know what the function is, and so the same props method can be called but passes a different argument depending on the function the button represents. In this case, we are adding to the database, so the argument being passed is an object containing the explicit properties of the book (from the Google API) that are necessary for the database.
+
+Back in 'app.js':
+
+```js
+saveToFavorites = (bookObject) => {
+  API.saveBook(bookObject)
+    .then(() => {
+      this.getFavorites();
+    })
+    .catch((err) => console.error(err));
+};
+```
+
+the method calls the front end API and the `saveBook` method, passing the `bookObj` to the API, which (via `axios`):
+
+```js
+  saveBook(bookData) {
+    return axios.post(`/api/books`, bookData);
+  },
+```
+
+calls a `POST` method on the route `/api/books` and passes the book object again to the back end router:
+
+```js
+router.route(`/`).get(booksController.findAll).post(booksController.create);
+```
+
+This router in turn references the Controller:
+
+```js
+    create: (req, res) => {
+        db.Book.create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+```
+
+where the actual communication with the database occurs. Once a positive code is received and communicated via the returned `promise`, back in the front end the method `getFavorites` is called again which resets the state for the saved books.
+
+If succesful, the user will see the number of books in the saved link parentheses increase, and the button clicked to enact this whole procedure displays an extra line of text confirming that the user added the book. Since this is a very simple part of state not relevant to the rest of the app, instead of keeping it in the state of app.js, I am using `'useState` inside of the individual book components, to toggle a boolean. That means that on refresh or if the user changes the path, this resets, and it only affects the targeted book.
+
+### 4. Viewing Favorites and Deleting
+
+As I mentioned previously, this is a single page application posing as multipage. Therefore, when the user clicks on 'Favorites' they are not actually viewing another page, merely rendering conditionally (dependent on the URL/route) rendered components using the `BrowserRouter` feature of React:
+
+```js
+<Router>
+  <Header />
+  <NavBar /* props */ />
+  <Wrapper>
+    <Switch>
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Home
+          // props
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/saved"
+        render={() => (
+          <Saved
+          // props
+          />
+        )}
+      />
+    </Switch>
+  </Wrapper>
+</Router>
+```
+
+This enables the browser to treat it as multipage, enabling things like the ability to go 'back' and access history, as well as linking directly to a location from an external source.
+
+The favorites page and search page, when displaying results, both look identical in the card layout - this is due to the re-usability of the React components. The difference is that the button that previously was a 'save' button, is now a delete button.
+
+It is not necessary to go through the code because it is almost identical to the adding of a book to the database, but when `deleteFromFavorites` is called, instead of passing the book object, the ID of the book is passed, and the controller submits that ID to the database via `findById`, `then` it `remove`s that `document`.
+
+As far as the user experience goes, since we are currently viewing a component dependent on the databse contents, an adjustment to the database followed by an update to the state causes a re-render, and the user will see the component refresh and the deleted book will have been removed.
+
 ## Setup
+
+There is no setup, only necessary to visit the site and use.
 
 ## Features
 
-This app has a cool chat feature that enables users to talk to each other while playing. The fact that you have to sign up for an account makes it more competitive and helps identify individuals in the chat.
-
 ## Status & Future Developement
+
+This app would benefit from a user sign in - that way many users could have individual lists. As it stands, the site will display the same results to anyone, and any user can change the list. Multiple instances of the site would be required.
+
+A personal notes section would be a good feature to have, the user could, once the book is in their list, add notes to the book, a review or a reminder, a bookmark, where to buy the book, and so on. The API is already set up for this, it would just need some front end work to implement it.
 
 ## Contact
 
