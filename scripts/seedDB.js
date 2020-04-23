@@ -6,6 +6,7 @@ const db = require(`../models`);
 
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/googlebooks`, {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const bookSeed = [
@@ -18,7 +19,7 @@ const bookSeed = [
   },
 ];
 
-db.Book.remove({})
+db.Book.deleteMany({})
   .then(() => db.Book.collection.insertMany(bookSeed))
   .then((data) => {
     console.log(`${data.result.n} records inserted!`);
