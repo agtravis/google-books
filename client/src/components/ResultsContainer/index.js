@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 import Result from '../Result';
 
 function ResultsContainer(props) {
