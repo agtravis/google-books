@@ -1,8 +1,18 @@
 #nav-bar {
   display: flex;
   justify-content: center;
+  background-color: rgb(16, 58, 172);
+  padding: 10px;
 }
 
 #nav-bar p {
-  margin: 0 10px;
+  margin: 0 100px;
+  font-size: 1.75rem;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+#nav-bar p:hover {
+  color: rgb(16, 58, 172);
+  background-color: white;
 }

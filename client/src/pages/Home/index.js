@@ -7,7 +7,7 @@ import ResultsContainer from '../../components/ResultsContainer';
 function Home(props) {
   return (
     <div>
-      <Title title="Search" />
+      <Title title="Search Google Books API" />
       <SearchForm
         searchText={props.searchText}
         handleChange={props.handleChange}
@@ -15,10 +15,15 @@ function Home(props) {
       />
       {props.lastSearch.length ? (
         <div>
-          <Title title={`Search results for ${props.lastSearch}:`} />
+          <Title
+            title={`Search results for ${props.lastSearch}:`}
+            size="1.25rem"
+          />
           <hr />
         </div>
-      ) : null}
+      ) : (
+        <Title title={`Search results will appear below...`} size="1.25rem" />
+      )}
 
       {props.googleBooksResponse !== undefined ? (
         <div>

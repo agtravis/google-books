@@ -6,7 +6,7 @@ import ResultsContainer from '../../components/ResultsContainer';
 function Saved(props) {
   return (
     <div>
-      <Title title="Favorites" />
+      <Title title="Your Favorites" />
 
       {props.favoriteBooksResponse.length > 0 ? (
         <div>

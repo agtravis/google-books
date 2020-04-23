@@ -14,14 +14,14 @@
 
 .card-options a, .card-options p {
     color: white;
-    background-color: black;
+    background-color: rgb(16, 58, 172);
     border-radius: 5px;
     padding: 5px;
     text-align: center;
 }
 
 .card-options a:hover, .card-options p:hover {
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(62, 102, 212);
 }
 
 .card-options p {

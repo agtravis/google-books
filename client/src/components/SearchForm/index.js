@@ -11,7 +11,7 @@ function SearchForm(props) {
             <form id="search-bar-form">
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Search for a full or partial title of a book"
                 id="search-field"
                 value={props.searchText}
                 onChange={(event) => props.handleChange(event)}

@@ -11,7 +11,7 @@ function NavBar(props) {
           <p>Search</p>
         </Link>
         <Link to="/saved">
-          <p>Saved ({props.numBooks})</p>
+          <p>Favorites ({props.numBooks})</p>
         </Link>
       </div>
     </nav>

@@ -1,8 +1,8 @@
-#nav-bar-form {
+#search-bar-form {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #search-field {
-  width: 100px;
+  width: 300px;
 }
