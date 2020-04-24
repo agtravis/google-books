@@ -334,8 +334,6 @@ There is no setup, only necessary to visit the site and use.
 
 This app would benefit from a user sign in - that way many users could have individual lists. As it stands, the site will display the same results to anyone, and any user can change the list. Multiple instances of the site would be required.
 
-A personal notes section would be a good feature to have, the user could, once the book is in their list, add notes to the book, a review or a reminder, a bookmark, where to buy the book, and so on. The API is already set up for this, it would just need some front end work to implement it.
-
 ## Contact
 
 Created by [@agtravis](https://agtravis.github.io/portfolio)
