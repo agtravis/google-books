@@ -293,6 +293,37 @@ It is not necessary to go through the code because it is almost identical to the
 
 As far as the user experience goes, since we are currently viewing a component dependent on the databse contents, an adjustment to the database followed by an update to the state causes a re-render, and the user will see the component refresh and the deleted book will have been removed.
 
+### 5. Custom Note Making
+
+With my app, the user has the ability to make notes on their book, whatever they like and they can edit the note if they need to update it, or delete the note altogether.
+
+In order to do this, each book has a unique `detail` page, where the note interaction occurs. This is done by using the parameters part of the URL as a way to decide which book is in focus:
+
+```js
+<Link
+  // other props
+  to={`/books/${props.id}`}
+>
+  <p>Personal Notes</p>
+</Link>
+```
+
+will load the appropriate page:
+
+```js
+useEffect(() => {
+  API.getBook(props.match.params.id)
+    .then((res) => {
+      setBook(res.data);
+    })
+    .catch((err) => console.error(err));
+}, [props.match.params.id]);
+```
+
+is called in the functional component (as opposed to `componentDidMount` from a class component) and uses `useState` to `setBook` with an API response. The API call is made by passing the relevant part of the URL in order to call up the specific book's details by its ID number. This is also provided via the router to the page component back in app.js, so that this child component has access to this property.
+
+From here, any updates to the individual book can be made via the back-end router and controller.
+
 ## Setup
 
 There is no setup, only necessary to visit the site and use.

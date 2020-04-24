@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Home from './pages/Home';
 import Saved from './pages/Saved';
+import Detail from './pages/Detail';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Wrapper from './components/Wrapper';
@@ -94,6 +95,11 @@ class App extends Component {
                   getFavorites={this.getFavorites}
                 />
               )}
+            />
+            <Route
+              exact
+              path="/books/:id"
+              render={(matchProps) => <Detail {...matchProps} />}
             />
           </Switch>
         </Wrapper>

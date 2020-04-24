@@ -18,7 +18,9 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   update: (req, res) => {
-    db.Book.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Book.findOneAndUpdate({ _id: req.params.id }, req.body, {
+      useFindAndModify: false,
+    })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

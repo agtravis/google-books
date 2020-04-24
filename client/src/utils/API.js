@@ -13,4 +13,7 @@ export default {
   saveBook(bookData) {
     return axios.post(`/api/books`, bookData);
   },
+  updateBook(id, bookData) {
+    return axios.put(`/api/books/${id}`, bookData);
+  },
 };

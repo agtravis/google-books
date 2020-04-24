@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 function Result(props) {
@@ -16,6 +17,13 @@ function Result(props) {
           )}
         </div>
         <div className="card-options">
+          <Link
+            style={{ backgroundColor: '#fff', cursor: 'default' }}
+            className={props.deleteClassName}
+            to={`/books/${props.id}`}
+          >
+            <p>Personal Notes</p>
+          </Link>
           {props.link ? (
             <a href={props.link} target="_blank" rel="noopener noreferrer">
               View in Google Books
