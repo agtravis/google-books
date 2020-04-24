@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 
 function Result(props) {
-  const [addStatus, setAddStatus] = useState(props.saved);
+  let saved = props.saved;
 
   return (
     <div id={`book-card${props.id}`} className="book-card">
@@ -24,7 +24,7 @@ function Result(props) {
           <p
             className={props.addClassName}
             onClick={
-              addStatus === false
+              saved === false
                 ? () => {
                     props.interactWithFavorites({
                       authors: props.authors,
@@ -33,13 +33,13 @@ function Result(props) {
                       link: props.link,
                       title: props.title,
                     });
-                    setAddStatus(true);
+                    saved = true;
                   }
                 : null
             }
           >
             {props.actionName}
-            {addStatus ? (
+            {saved ? (
               <span>
                 <br />
                 <strong>In Your Favorites!</strong>

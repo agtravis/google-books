@@ -167,7 +167,7 @@ There is only one input field, so the `handleChange` method does not need any co
 
 Passed via `props`, this component renders another component conditionally via a ternary statement that checks to see if the array has been populated by a valid search first. If not, a message appears. If the response has been valid, then the appropriate selected information from the response is passed to the rendering component for the data, but first it is formatted into a specific custom object. This includes a new property `saved`.
 
-This property is declared as a `let` and starts out false. This is a property that will determine if the user has already saved this exact book to their favorites list, and so performs a quick comparative analysis of the most unique property available in both arrays (a URL address), and determines if the user already has it in their list. If found, the boolean variable is set to true, and the loop can end early since there would only be one instance of this match - the user is later disabled from adding multiple copies of the same book to their list.
+This property is declared as a `let` variable and starts out false. This is a property that will determine if the user has already saved this exact book to their favorites list to display so on the search, and so performs a quick comparative analysis of the most unique property available in both arrays (a URL address), and determines if the user already has it in their list. If found, the boolean variable is set to true, and the loop can end early since there would only be one instance of this match. In addition, the user is disabled from adding multiple copies of the same book to their list.
 
 NOTE: The Google API does not always contain all the values needed. If the value doesn't exist, the property doesn't exist, and so in order to render, ternaries have to be inserted at the endpoint to ensure a default behavior is written so React knows what to render if the value doesn't exist.
 
@@ -210,7 +210,7 @@ At this point, the user can choose to view more details on the book or even purc
 
 In the component for the individual books displayed in the 'Search' home-page, the second button allows the user to add a book to their list of favorites. The function being passed in is a prop with a generic name, but further up the prop tree the function passed depends on the eventual usage of the component. This way, the so-called 'dumb' components do not need to know what the function is, and so the same props method can be called but passes a different argument depending on the function the button represents. In this case, we are adding to the database, so the argument being passed is an object containing the explicit properties of the book (from the Google API) that are necessary for the database.
 
-NOTE: that based on the `state` of this function component (`true`/`false`), this function may be disabled so as not to allow the user to add multiple copies of the same book, more on that in a bit.
+NOTE: that this function may be disabled if the book is already in favorites so as not to allow the user to add multiple copies of the same book.
 
 Back in 'app.js':
 
@@ -250,7 +250,7 @@ This router in turn references the Controller:
 
 where the actual communication with the database occurs. Once a positive code is received and communicated via the returned `promise`, back in the front end the method `getFavorites` is called again which resets the state for the saved books.
 
-If succesful, the user will see the number of books in the saved link parentheses increase, and the button clicked to enact this whole procedure displays an extra line of text confirming that the user added the book. Since this is a very simple part of state not relevant to the rest of the app, instead of keeping it in the state of app.js, I am using `'useState` inside of the individual book components, to toggle a boolean. That means that on refresh or if the user changes the path, this resets, and it only affects the targeted book.
+If succesful, the user will see the number of books in the saved link parentheses increase, and the button clicked to enact this whole procedure displays an extra line of text confirming that the user added the book.
 
 ### 4. Viewing Favorites and Deleting
 
