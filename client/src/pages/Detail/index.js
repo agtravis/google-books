@@ -28,7 +28,6 @@ function Detail(props) {
     setBook({ ...book }, (book.notes = ``));
     API.updateBook(props.match.params.id, book)
       .then((data) => {
-        console.log(data);
         setBook({ ...book });
       })
       .catch((err) => console.error(err));
@@ -40,7 +39,6 @@ function Detail(props) {
     setNewNotes(``);
     API.updateBook(props.match.params.id, book)
       .then((data) => {
-        console.log(data);
         setBook({ ...book });
         document.getElementById('notes-form').classList.add('hide');
       })
