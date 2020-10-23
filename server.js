@@ -13,10 +13,11 @@ if (process.env.NODE_ENV === `production`) {
 
 app.use(routes);
 
+const CONNECTION_STRING = `mongodb+srv://heroku_555t5v8l:roc9o2kc09tdrd3gh27r3iisc@cluster-555t5v8l.qkck0.mongodb.net/heroku_555t5v8l?retryWrites=true&w=majority`;
 
 
 
-mongoose.connect(`mongodb+srv://heroku_555t5v8l:roc9o2kc09tdrd3gh27r3iisc@cluster-555t5v8l.qkck0.mongodb.net/heroku_555t5v8l?retryWrites=true&w=majority` || `mongodb://localhost/googlebooks`, {
+mongoose.connect(process.env.MONGO_CONNECTION || `mongodb://localhost/googlebooks`, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
