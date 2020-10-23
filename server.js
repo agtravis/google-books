@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === `production`) {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/googlebooks`, {
+mongoose.connect(process.env.MONGODB_CONNECT || `mongodb://localhost/googlebooks`, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
